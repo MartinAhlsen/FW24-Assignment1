@@ -20,13 +20,18 @@
     </header>
     <main>
       <form action="/submit" method="GET">
-        <label for="min">Test</label>
+        <label for="min">Type something and submit it:</label>
         <input type="text" id="min" name="input" />
         <button type="submit">Submit</button>
       </form>
       <form action="/submit" method="GET">
-        <label for="parameter">Enter a parameter:</label>
-        <input type="text" id="parameter" name="parameter" />
+        <legend>What do you prefer to drink?</legend>
+        <label for="wine">Wine</label>
+        <input type="radio" id="wine" name="drink" />
+        <label for="beer">Beer</label>
+        <input type="radio" id="beer" name="drink" />
+        <label for="liquor">Liquor</label>
+        <input type="radio" id="liquor" name="drink" />
         <button type="submit">Submit</button>
       </form>
     </main>
