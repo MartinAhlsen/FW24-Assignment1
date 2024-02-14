@@ -14,13 +14,16 @@ http
       req.url.includes("/contact") ||
       req.url.includes("/submit?input=")
     ) {
-      if (1 === 1) {
-        const show_message = () => {
-          console.log("hej");
-        };
-      } else {
-        console.log("hej");
-      }
+      fs.readFile("./html/contact.html", (err, data) => {
+        if (req.url.includes("/submit?input=")) {
+          const inputParts = req.url.split("="); // Split the URL at "="
+          const inputValue = inputParts[1]; // Extract the input value
+          res.write(data); // Write the input value to the response
+          res.end(`You sent the following message: ${inputValue}`); // End the response
+        } else {
+          res.end(data); // Send the contents of "contact.html" as response
+        }
+      });
     } else if (
       req.url.includes("/drinks") ||
       drinks.some((drink) => req.url.includes(drink))
