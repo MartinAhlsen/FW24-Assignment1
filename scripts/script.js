@@ -9,9 +9,14 @@ http
       res.end(
         "<h1>I'm Martin</h1><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam in reprehenderit atque! Omnis sit doloremque natus vero possimus eligendi neque. Ipsa atque culpa consequatur veritatis sint impedit, quaerat vitae nemo?</p>"
       );
-    } else if (req.url.includes("/contact")) {
+    } else if (req.url.includes("/contact") || req.url.includes("=wine")) {
       fs.readFile("./html/contact.html", (err, data) => {
         res.end(data);
+        // if (req.url.includes("wine")) {
+        //   fs.readFile("./html/wine.html", (err, data) => {
+        //     res.write(data);
+        //   });
+        // }
       });
     } else if (req.url.includes("/shop")) {
       res.end(
@@ -22,7 +27,11 @@ http
         res.end(data);
       });
     } else if (req.url.includes("/submit?input=")) {
-      res.end("<h1>You submitted the following input:</h1><p>${}</p>");
+      res.end(
+        "<h1>You submitted the following input:</h1><p>" +
+          req.url.replace("/submit?input=", "") +
+          "</p>"
+      );
     } else {
       fs.readFile("index.html", (err, data) => {
         res.end(data);
